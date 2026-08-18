@@ -50,7 +50,8 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
       </div>
       <nav className="flex-1 space-y-1 overflow-y-auto px-3 pb-4">
         {NAV.map((item) => {
-          const active = item.exact ? pathname === item.to : pathname.startsWith(item.to);
+          const exact = "exact" in item && item.exact;
+          const active = exact ? pathname === item.to : pathname.startsWith(item.to);
           return (
             <Link
               key={item.to}
