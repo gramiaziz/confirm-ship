@@ -275,8 +275,8 @@ function buildOrders(): Order[] {
     const id = 1245 + i;
     const fixed = FIXED.find((f) => f.id === id);
     const nameIdx = seeded(i, NAMES.length);
-    const [name, phone, gov] = NAMES[nameIdx];
-    const [product, size, color] = PRODUCTS[seeded(i + 3, PRODUCTS.length)];
+    const [name, phone, gov] = NAMES[nameIdx]!;
+    const [product, size, color] = PRODUCTS[seeded(i + 3, PRODUCTS.length)]!;
     const amount = 35 + seeded(i + 5, 416);
     const risk = seeded(i + 11, 100);
     const day = 18 - (i % 14);
@@ -287,17 +287,17 @@ function buildOrders(): Order[] {
       customer: name,
       phone,
       governorate: gov,
-      address: ADDRESSES[seeded(i + 2, ADDRESSES.length)],
+      address: ADDRESSES[seeded(i + 2, ADDRESSES.length)]!,
       product,
       size,
       color,
       quantity: 1 + (i % 2),
       amount,
-      confirmation: confirmations[i % confirmations.length],
+      confirmation: confirmations[i % confirmations.length]!,
       risk,
       riskFactors: factorsFor(risk, i),
-      delivery: deliveries[i % deliveries.length],
-      courier: COURIERS[seeded(i + 1, COURIERS.length)],
+      delivery: deliveries[i % deliveries.length]!,
+      courier: COURIERS[seeded(i + 1, COURIERS.length)]!,
     };
     if (fixed) {
       const merged: Order = { ...base, ...fixed } as Order;
