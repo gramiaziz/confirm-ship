@@ -218,7 +218,12 @@ function Dashboard() {
               />
             </div>
             <Button asChild variant="outline">
-              <Link to="/app/commandes">Voir tout</Link>
+             <Link
+  to="/app/commandes"
+  search={{ order: undefined }}
+>
+  Voir tout
+</Link>
             </Button>
           </div>
         </div>
