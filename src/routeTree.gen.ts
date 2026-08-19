@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
 import { Route as AppClientsRouteImport } from './routes/app.clients'
 import { Route as AppCommandesRouteImport } from './routes/app.commandes'
 import { Route as AppConfirmationsRouteImport } from './routes/app.confirmations'
@@ -31,6 +32,11 @@ const AppRoute = AppRouteImport.update({
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => AppRoute,
 } as any)
 const AppClientsRoute = AppClientsRouteImport.update({
@@ -62,6 +68,7 @@ const AppRisquesRoute = AppRisquesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/clients': typeof AppClientsRoute
   '/app/commandes': typeof AppCommandesRoute
   '/app/confirmations': typeof AppConfirmationsRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/clients': typeof AppClientsRoute
   '/app/commandes': typeof AppCommandesRoute
   '/app/confirmations': typeof AppConfirmationsRoute
@@ -82,6 +90,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/clients': typeof AppClientsRoute
   '/app/commandes': typeof AppCommandesRoute
   '/app/confirmations': typeof AppConfirmationsRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app'
+    | '/app/analytics'
     | '/app/clients'
     | '/app/commandes'
     | '/app/confirmations'
@@ -103,6 +113,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app/analytics'
     | '/app/clients'
     | '/app/commandes'
     | '/app/confirmations'
@@ -113,6 +124,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app'
+    | '/app/analytics'
     | '/app/clients'
     | '/app/commandes'
     | '/app/confirmations'
@@ -147,6 +159,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/app/'
       preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/analytics': {
+      id: '/app/analytics'
+      path: '/analytics'
+      fullPath: '/app/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/clients': {
@@ -188,6 +207,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppClientsRoute: typeof AppClientsRoute
   AppCommandesRoute: typeof AppCommandesRoute
   AppConfirmationsRoute: typeof AppConfirmationsRoute
@@ -197,6 +217,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
   AppClientsRoute: AppClientsRoute,
   AppCommandesRoute: AppCommandesRoute,
   AppConfirmationsRoute: AppConfirmationsRoute,
