@@ -15,6 +15,7 @@ import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppClientsRouteImport } from './routes/app.clients'
 import { Route as AppCommandesRouteImport } from './routes/app.commandes'
 import { Route as AppConfirmationsRouteImport } from './routes/app.confirmations'
+import { Route as AppLivraisonsRouteImport } from './routes/app.livraisons'
 import { Route as AppRisquesRouteImport } from './routes/app.risques'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +48,11 @@ const AppConfirmationsRoute = AppConfirmationsRouteImport.update({
   path: '/confirmations',
   getParentRoute: () => AppRoute,
 } as any)
+const AppLivraisonsRoute = AppLivraisonsRouteImport.update({
+  id: '/livraisons',
+  path: '/livraisons',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppRisquesRoute = AppRisquesRouteImport.update({
   id: '/risques',
   path: '/risques',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/app/clients': typeof AppClientsRoute
   '/app/commandes': typeof AppCommandesRoute
   '/app/confirmations': typeof AppConfirmationsRoute
+  '/app/livraisons': typeof AppLivraisonsRoute
   '/app/risques': typeof AppRisquesRoute
   '/app/': typeof AppIndexRoute
 }
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/app/clients': typeof AppClientsRoute
   '/app/commandes': typeof AppCommandesRoute
   '/app/confirmations': typeof AppConfirmationsRoute
+  '/app/livraisons': typeof AppLivraisonsRoute
   '/app/risques': typeof AppRisquesRoute
   '/app': typeof AppIndexRoute
 }
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/app/clients': typeof AppClientsRoute
   '/app/commandes': typeof AppCommandesRoute
   '/app/confirmations': typeof AppConfirmationsRoute
+  '/app/livraisons': typeof AppLivraisonsRoute
   '/app/risques': typeof AppRisquesRoute
   '/app/': typeof AppIndexRoute
 }
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/app/clients'
     | '/app/commandes'
     | '/app/confirmations'
+    | '/app/livraisons'
     | '/app/risques'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/app/clients'
     | '/app/commandes'
     | '/app/confirmations'
+    | '/app/livraisons'
     | '/app/risques'
     | '/app'
   id:
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/app/clients'
     | '/app/commandes'
     | '/app/confirmations'
+    | '/app/livraisons'
     | '/app/risques'
     | '/app/'
   fileRoutesById: FileRoutesById
@@ -158,6 +170,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppConfirmationsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/livraisons': {
+      id: '/app/livraisons'
+      path: '/livraisons'
+      fullPath: '/app/livraisons'
+      preLoaderRoute: typeof AppLivraisonsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/risques': {
       id: '/app/risques'
       path: '/risques'
@@ -172,6 +191,7 @@ interface AppRouteChildren {
   AppClientsRoute: typeof AppClientsRoute
   AppCommandesRoute: typeof AppCommandesRoute
   AppConfirmationsRoute: typeof AppConfirmationsRoute
+  AppLivraisonsRoute: typeof AppLivraisonsRoute
   AppRisquesRoute: typeof AppRisquesRoute
   AppIndexRoute: typeof AppIndexRoute
 }
@@ -180,6 +200,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppClientsRoute: AppClientsRoute,
   AppCommandesRoute: AppCommandesRoute,
   AppConfirmationsRoute: AppConfirmationsRoute,
+  AppLivraisonsRoute: AppLivraisonsRoute,
   AppRisquesRoute: AppRisquesRoute,
   AppIndexRoute: AppIndexRoute,
 }
