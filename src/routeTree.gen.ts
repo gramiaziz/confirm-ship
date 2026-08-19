@@ -20,6 +20,7 @@ import { Route as AppImportRouteImport } from './routes/app.import'
 import { Route as AppLivraisonsRouteImport } from './routes/app.livraisons'
 import { Route as AppParametresRouteImport } from './routes/app.parametres'
 import { Route as AppRisquesRouteImport } from './routes/app.risques'
+import { Route as AppTarifsRouteImport } from './routes/app.tarifs'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +77,11 @@ const AppRisquesRoute = AppRisquesRouteImport.update({
   path: '/risques',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTarifsRoute = AppTarifsRouteImport.update({
+  id: '/tarifs',
+  path: '/tarifs',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/app/livraisons': typeof AppLivraisonsRoute
   '/app/parametres': typeof AppParametresRoute
   '/app/risques': typeof AppRisquesRoute
+  '/app/tarifs': typeof AppTarifsRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/app/livraisons': typeof AppLivraisonsRoute
   '/app/parametres': typeof AppParametresRoute
   '/app/risques': typeof AppRisquesRoute
+  '/app/tarifs': typeof AppTarifsRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/app/livraisons': typeof AppLivraisonsRoute
   '/app/parametres': typeof AppParametresRoute
   '/app/risques': typeof AppRisquesRoute
+  '/app/tarifs': typeof AppTarifsRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/app/livraisons'
     | '/app/parametres'
     | '/app/risques'
+    | '/app/tarifs'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/app/livraisons'
     | '/app/parametres'
     | '/app/risques'
+    | '/app/tarifs'
     | '/app'
   id:
     | '__root__'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/app/livraisons'
     | '/app/parametres'
     | '/app/risques'
+    | '/app/tarifs'
     | '/app/'
   fileRoutesById: FileRoutesById
 }
@@ -241,6 +253,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRisquesRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/tarifs': {
+      id: '/app/tarifs'
+      path: '/tarifs'
+      fullPath: '/app/tarifs'
+      preLoaderRoute: typeof AppTarifsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -253,6 +272,7 @@ interface AppRouteChildren {
   AppLivraisonsRoute: typeof AppLivraisonsRoute
   AppParametresRoute: typeof AppParametresRoute
   AppRisquesRoute: typeof AppRisquesRoute
+  AppTarifsRoute: typeof AppTarifsRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
@@ -265,6 +285,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppLivraisonsRoute: AppLivraisonsRoute,
   AppParametresRoute: AppParametresRoute,
   AppRisquesRoute: AppRisquesRoute,
+  AppTarifsRoute: AppTarifsRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
